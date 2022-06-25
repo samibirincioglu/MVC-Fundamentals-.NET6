@@ -1,0 +1,75 @@
+﻿@model MVCFundamentals.Models.Car
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        @*Ürün oluşturmak için gerekli bilgileri ve girilecek input kutucuklarını ekrana çıkartıyorum*@
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Add A Car Model</h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row pt-2">
+                    <div class="col-4">
+                        <label asp-for="ModelName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ModelName" class="form-control" />
+                        <span asp-validation-for="ModelName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row pt-2" >
+                          <div class="col-4">
+                              <label asp-for="Color"></label>
+                          </div>
+                          <div class="col-8">
+                              <input asp-for="Color" class="form-control" />
+                              <span asp-validation-for="Color" class="text-danger"></span>
+                          </div>
+                      </div>
+                <div class="form-group row pt-2" >
+                          <div class="col-4">
+                              <label asp-for="ProductionDate"></label>
+                          </div>
+                          <div class="col-8">
+                              <input asp-for="ProductionDate" class="form-control" />
+                              <span asp-validation-for="ProductionDate" class="text-danger"></span>
+                          </div>
+                      </div>
+                <div class="form-group row pt-2" >
+                          <div class="col-4">
+                              <label asp-for="Price"></label>
+                          </div>
+                          <div class="col-8">
+                              <input asp-for="Price" class="form-control" />
+                              <span asp-validation-for="Price" class="text-danger"></span>
+                          </div>
+
+                </div>
+                @*Olusturma butonunu controllerin create actionuna bağlıyorum*@
+                <div class="form-group row pt-5">
+                    <div class="col-6 offset-6  row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Add" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="sign-out"></i> Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+    </div>
+
+</form>
+@*Kontrollerin kullanıcı tarafında yapılması için gerekli js kodu*@
+@section Scripts{ 
+
+    @{ <partial name="_ValidationScriptsPartial" /> }
+
+}

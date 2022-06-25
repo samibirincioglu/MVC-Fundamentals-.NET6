@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MVCFundamentals.Models.Car>
+
+@{
+    ViewData["Title"] = "Categories";
+
+}
+
+    <div class="container p-3">
+    <div class="row pt-3">
+        <div class="col-sm-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-sm-2" style="text-align: right;">
+            <a  asp-action="Create" class="btn btn-primary">
+                 Create New
+            </a>
+        </div>
+        @*Arama kutusuna girilen yazıyı searchString e dönüştürüyorum*@
+        <div class="col-sm-4 ">
+            <form  asp-action="Index" method="get">
+                    <p>
+                       <b>Title:</b>  <input type = "text" name="searchString"/>
+                        <input type ="submit" value="Filter" class="btn btn-dark"/>
+                    </p>
+            </form>
+
+        </div>
+    </div>
+
+    <br />
+
+    @*Eger viewa gonderilmis verinin icerisinde 1 yada daha fazla oge varsa tabloyu olustur*@
+    @if (Model.Count() > 0)
+    {
+
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Brand
+                        </th>
+                        <th>
+                            Produce Date
+                        </th>
+                        <th>
+                            Color
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Manage
+                        </th>              
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @*Gelen Model deki her öğe için  bilgileri yazdır *@
+                @foreach (var item in @Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModelName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductionDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>  
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+              </table>
+     }
+     else
+     {
+         <p>No category exits</p>
+     }
+
+ </div>
